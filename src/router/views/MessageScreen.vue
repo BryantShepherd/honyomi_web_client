@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid class="d-flex">
-    <v-navigation-drawer>
+  <v-container fluid class="d-flex pa-0">
+    <v-navigation-drawer permanent class="fit-v-viewport">
       <v-list nav v-for="n in 10" :key="n">
         <v-list-item>
           <v-list-item-avatar>
@@ -12,7 +12,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <div class="d-flex flex-column width-100">
+    <div class="d-flex flex-column width-100 fit-v-viewport">
       <div
         id="conversation-app-bar"
         class="pa-5 d-flex align-center justify-space-between"
@@ -22,7 +22,7 @@
           <v-icon>mdi-alert-circle-outline</v-icon>
         </v-btn>
       </div>
-      <div>
+      <div id="message-list-item" class="fill-height">
         <message-item
           v-for="message in messageList"
           :key="message.id"
@@ -83,5 +83,14 @@ div#conversation-app-bar {
 
 .width-100 {
   width: 100%;
+}
+
+.fit-v-viewport {
+  height: calc(100vh - 140px);
+  max-height: calc(100vh - 140px);
+}
+
+#message-list-item {
+  overflow-y: scroll;
 }
 </style>
