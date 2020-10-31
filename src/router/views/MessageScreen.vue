@@ -19,6 +19,7 @@
         </v-btn>
       </div>
       <div id="message-list-item" class="fill-height">
+        <message-list-date date="October 20, 2020" />
         <message-item
           v-for="message in messageList"
           :key="message.id"
@@ -34,9 +35,15 @@
 import MessageItem from "@/components/messageScreen/MessageItem.vue";
 import MessageTextBox from "@/components/messageScreen/MessageTextBox.vue";
 import ConversationItem from "@/components/messageScreen/ConversationItem.vue";
+import MessageListDate from "@/components/messageScreen/MessageListDate.vue";
 
 export default {
-  components: { MessageItem, MessageTextBox, ConversationItem },
+  components: {
+    MessageItem,
+    MessageTextBox,
+    ConversationItem,
+    MessageListDate,
+  },
   data() {
     return {
       messageList: [
@@ -44,7 +51,7 @@ export default {
           id: 1,
           sender: {
             id: 1,
-            name: "Jeff Winger",
+            name: "Annie Edison",
           },
           conversationId: 1,
           message: {
@@ -57,7 +64,7 @@ export default {
           id: 2,
           sender: {
             id: 1,
-            name: "Jeff Winger",
+            name: "Annie Edison",
           },
           conversationId: 1,
           message: {
