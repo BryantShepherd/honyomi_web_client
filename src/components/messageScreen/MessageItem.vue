@@ -12,6 +12,7 @@
         <p class="mb-0">{{
           message.message.richText || message.message.text
         }}</p>
+        <span id="message-item-body-timestamp">{{ message.createdAt }}</span>
       </div>
     </div>
   </div>
@@ -38,5 +39,11 @@ export default {
 
 .width-100 {
   width: 100%;
+}
+
+#message-item-body-timestamp {
+  float: right;
+  font-size: 0.7em;
+  color: rgba(0, 0, 0, 0.6);
 }
 </style>
