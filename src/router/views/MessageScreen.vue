@@ -75,6 +75,51 @@ export default {
           },
           createdAt: "10:18 AM",
         },
+        {
+          id: 3,
+          sender: {
+            id: 1,
+            name: "Annie Edison",
+          },
+          conversationId: 1,
+          message: {
+            richText:
+              "Someone like you. Someone who'll rattle the cages. Does it come in black?",
+            text:
+              "Someone like you. Someone who'll rattle the cages. Does it come in black?",
+          },
+          createdAt: "10:18 AM",
+        },
+        {
+          id: 4,
+          sender: {
+            id: 1,
+            name: "Annie Edison",
+          },
+          conversationId: 1,
+          message: {
+            richText:
+              " Swear to me! My anger outweights my guilt. It's not who I am underneath but what I do that defines me. I can't do that as Bruce Wayne... as a man. I'm flesh and blood. I can be ignored, destroyed. But as a symbol, I can be incorruptible, I can be everlasting.",
+            text:
+              " Swear to me! My anger outweights my guilt. It's not who I am underneath but what I do that defines me. I can't do that as Bruce Wayne... as a man. I'm flesh and blood. I can be ignored, destroyed. But as a symbol, I can be incorruptible, I can be everlasting.",
+          },
+          createdAt: "10:18 AM",
+        },
+        {
+          id: 5,
+          sender: {
+            id: 1,
+            name: "Annie Edison",
+          },
+          conversationId: 1,
+          message: {
+            richText:
+              " Does it come in black? This isn't a car. Well, you see... I'm buying this hotel and setting some new rules about the pool area.",
+            text:
+              " Does it come in black? This isn't a car. Well, you see... I'm buying this hotel and setting some new rules about the pool area. ",
+          },
+          createdAt: "10:18 AM",
+        },
       ],
       conversationList: [
         {
