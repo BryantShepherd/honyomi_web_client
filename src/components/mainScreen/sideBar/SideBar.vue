@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer permanent left app class="sidebar">
+  <v-navigation-drawer permanent left app color="side-bar" :class="{ sidebar: !isDark }">
     <template v-slot:prepend>
       <v-list-item two-line style="padding-top: 15px;">
         <v-list-item-avatar class="avatar">
@@ -142,12 +142,16 @@ export default {
       ],
     };
   },
+  computed: {
+    isDark() {
+      return this.$vuetify.theme.dark;
+    },
+  },
 };
 </script>
 
 <style scoped>
 .sidebar {
-  background-color: whitesmoke !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) inset;
 }
 

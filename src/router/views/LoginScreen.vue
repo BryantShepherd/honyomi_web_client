@@ -1,7 +1,7 @@
 <template>
   <base-line class="background">
-    <div class="container">
-      <img src="/assets/login.jpg" class="loginImg" />
+    <v-card class="container">
+      <img src="/assets/login.png" class="loginImg" />
       <div class="formContainer">
         <h1 class="titleSignin">Sign In</h1>
         <v-form @submit="login()">
@@ -34,7 +34,7 @@
           </p>
         </v-form>
       </div>
-    </div>
+    </v-card>
   </base-line>
 </template>
 
@@ -72,7 +72,6 @@ export default {
 
 <style scoped>
 .background {
-  background-color: gainsboro;
   height: 100%;
 }
 .container {
