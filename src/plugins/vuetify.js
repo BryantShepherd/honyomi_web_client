@@ -15,6 +15,7 @@ export default new Vuetify({
         error: "#b71c1c",
         "message-item": "#f5f5f5",
         "side-bar": "#f5f5f5",
+        "login-bg": "#d3d3d3",
       },
       dark: {
         "message-item": "#212121",

@@ -1,5 +1,5 @@
 <template>
-  <base-line class="background">
+  <base-line class="background login-bg">
     <v-card class="container">
       <img src="/assets/login.png" class="loginImg" />
       <div class="formContainer">
@@ -78,7 +78,6 @@ export default {
 <style scoped>
 .background {
   height: 100%;
-  background-color: lightgray;
 }
 .container {
   width: 800px;

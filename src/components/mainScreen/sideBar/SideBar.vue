@@ -24,7 +24,7 @@
 
                 <v-list dense>
                   <v-list-item-group v-model="selectedOption" color="primary">
-                    <v-list-item v-for="item in items" :key="item.title" :href="'/settings'">
+                    <v-list-item v-for="item in items" :key="item.title" @click="item.onClick">
                       <v-list-item-icon style="margin-right: 12px">
                         <v-icon>{{ item.icon }}</v-icon>
                       </v-list-item-icon>
@@ -108,8 +108,28 @@ export default {
       ],
       selectedOption: 2,
       items: [
-        { title: "Account settings", icon: "mdi-cog-outline", link: "/" },
-        { title: "Log out", icon: "mdi-logout-variant", link: "/" },
+        {
+          title: "Toggle Dark Theme",
+          icon: "mdi-brightness-6",
+          onClick: () => {
+            this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+            localStorage.setItem("dark", this.$vuetify.theme.dark);
+          },
+        },
+        {
+          title: "Account settings",
+          icon: "mdi-cog-outline",
+          onClick: () => {
+            this.$router.push("/settings");
+          },
+        },
+        {
+          title: "Log out",
+          icon: "mdi-logout-variant",
+          onClick: () => {
+            this.$router.push("/login");
+          },
+        },
       ],
       selectedClass: 0,
       classes_owned: [
