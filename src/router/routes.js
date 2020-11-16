@@ -1,7 +1,7 @@
 import About from "./views/About.vue";
 import Login from "./views/LoginScreen.vue";
 import Classes from "./views/MainScreen.vue";
-import SettingsUserLayout from "@/router/layouts/SettingsUserLayout";
+import Register from "./views/RegisterScreen.vue";
 
 export default [
   {
@@ -13,6 +13,11 @@ export default [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
   {
     path: "/about",
@@ -70,8 +75,9 @@ export default [
   },
   {
     path: "/settings",
-    name: "SettingsUserLayout",
-    component: SettingsUserLayout,
+    alias: ["/settings/profile"],
+    name: "SettingsAccountScreen",
+    component: () => import("./views/SettingsAccountScreen.vue"),
     meta: {
       requiresAuth: true,
     },

@@ -1,9 +1,8 @@
 <template>
   <base-line class="background login-bg">
     <v-card class="container">
-      <img src="/assets/login.png" class="loginImg" />
       <div class="formContainer">
-        <h1 class="titleSignin">Sign In</h1>
+        <h1 class="titleSignin">Sign up</h1>
         <v-form @submit="login()">
           <v-text-field
             v-model="user.email"
@@ -13,6 +12,7 @@
             required
           >
           </v-text-field>
+          <v-text-field v-model="user.name" label="Name" outlined required placeholder="your name"> </v-text-field>
           <v-text-field
             v-model="user.password"
             label="Password"
@@ -24,19 +24,19 @@
             @click:append="showPassword = !showPassword"
           >
           </v-text-field>
-          <v-checkbox v-model="keepsignin" :label="`Stay logged in`"> </v-checkbox>
-          <v-btn block elevation="4" color="primary" @click="login()"> Log in </v-btn>
-          <p class="orDivider"> OR </p>
-          <v-btn block elevation="4" max-width="370px">
-            <v-avatar size="3%" class="mr-3">
-              <v-img src="/assets/logoGG.png"> </v-img>
-            </v-avatar>
-            Sign in with google
-          </v-btn>
-          <p class="orDivider">
-            Don't have an account?
-            <a ref=""> Sign up!</a>
-          </p>
+          <v-text-field
+            v-model="re_password"
+            label="Confirm Password"
+            outlined
+            required
+            placeholder="Confirm password"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="showPassword ? 'text' : 'password'"
+            @click:append="showPassword = !showPassword"
+          >
+          </v-text-field>
+
+          <v-btn block elevation="4" color="primary" @click="register()"> Sign up </v-btn>
         </v-form>
       </div>
     </v-card>
@@ -45,10 +45,9 @@
 
 <script>
 import BaseLine from "../layouts/Baseline.vue";
-import { AUTH_LOGIN } from "../../store/actions/auth";
 
 export default {
-  name: "LogIn",
+  name: "Register",
   components: {
     BaseLine,
   },
@@ -56,20 +55,17 @@ export default {
     return {
       user: {
         email: "",
+        name: "",
         password: "",
       },
+      re_password: "",
       keepsignin: false,
       showPassword: false,
     };
   },
   methods: {
-    login() {
-      this.$store.dispatch(AUTH_LOGIN, this.user).then(() => {
-        if (this.$route.query.redirect) {
-          this.$router.push(this.$route.query.redirect);
-        }
-        this.$router.push({ path: "/classes" });
-      });
+    register() {
+      console.log("register");
     },
   },
 };
@@ -88,10 +84,12 @@ export default {
   padding-top: 10px;
   margin-top: 50px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  background-image: url("/assets/register.jpg");
+  background-size: cover;
 }
 .formContainer {
-  width: 50%;
-  float: right;
+  width: 70%;
+  margin: auto;
 }
 .orDivider {
   margin: 20px;
@@ -101,10 +99,7 @@ export default {
 .titleSignin {
   text-align: center;
   margin: 20px;
-  color: dodgerblue;
-}
-.loginImg {
-  width: 45%;
-  height: 100%;
+  color: rgb(27, 79, 253);
+  font-size: 40px;
 }
 </style>
