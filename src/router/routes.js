@@ -6,7 +6,7 @@ export default [
   {
     path: "/",
     name: "Home",
-    component: () => import("./views/Home.vue"),
+    component: () => lazyLoadView(import("./views/Home.vue")),
   },
   {
     path: "/login",
@@ -34,7 +34,7 @@ export default [
         path: "message",
         alias: [""],
         name: "Message",
-        component: () => import("./views/MessageScreen.vue"),
+        component: () => lazyLoadView(import("./views/MessageScreen.vue")),
       },
       {
         path: "files",
@@ -94,3 +94,19 @@ export default [
     ],
   },
 ];
+function lazyLoadView(AsyncView) {
+  const AsyncHandler = () => ({
+    component: AsyncView,
+    loading: require("./views/LoadingScreen.vue").default,
+    delay: 4000,
+    error: require("./views/TimeoutScreen.vue").default,
+    timeout: 10000,
+  });
+
+  return Promise.resolve({
+    functional: true,
+    render(h, { data, children }) {
+      return h(AsyncHandler, data, children);
+    },
+  });
+}
