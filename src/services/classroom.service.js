@@ -9,5 +9,5 @@ export function getClassrooms() {
  * @param {Number} classroomId
  */
 export function getClassroomMembers(classroomId) {
-  return axios.get(`/api/classroom/${classroomId}/students`);
+  return axios.get(`/api/classroom/${classroomId}/members`);
 }
