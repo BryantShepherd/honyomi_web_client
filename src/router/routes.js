@@ -1,4 +1,4 @@
-import About from "./views/About.vue";
+import Home from "./views/Home.vue";
 import Login from "./views/LoginScreen.vue";
 import Classes from "./views/MainScreen.vue";
 import Register from "./views/Register.vue";
@@ -8,7 +8,17 @@ export default [
   {
     path: "/",
     name: "Home",
-    component: () => import("./views/Home.vue"),
+    beforeEnter(to, from, next) {
+      if (store.getters.isAuthenticated) {
+        return next({
+          path: "/classes",
+        });
+      } else {
+        return next({
+          path: "/login",
+        });
+      }
+    },
   },
   {
     path: "/login",
@@ -23,11 +33,11 @@ export default [
   {
     path: "/about",
     name: "About",
-    component: About,
+    component: Home,
   },
   {
     path: "/classes",
-    name: "ClassStart",
+    component: Classes,
     beforeEnter(to, from, next) {
       store
         .dispatch("FETCH_CLASSES")
@@ -42,7 +52,7 @@ export default [
               },
             });
           } else {
-            return next({ name: "About" });
+            return next();
           }
         })
         .catch(() => {
@@ -52,6 +62,13 @@ export default [
     meta: {
       requiresAuth: true,
     },
+    children: [
+      {
+        path: "",
+        name: "ClassStart",
+        component: () => import("@/components/mainScreen/EmptyScreen.vue"),
+      },
+    ],
   },
   {
     path: "/classes/:code",
@@ -105,7 +122,7 @@ export default [
   },
   {
     path: "*",
-    name: "Coming soon",
+    name: "404",
     component: () => import("./views/comingSoon.vue"),
   },
   {

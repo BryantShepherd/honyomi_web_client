@@ -11,6 +11,7 @@
             placeholder="user@remind-clone.com"
             outlined
             required
+            @keyup.enter.exact="login"
           >
           </v-text-field>
           <v-text-field
@@ -59,7 +60,7 @@ export default {
         email: "",
         password: "",
       },
-      keepSignedIn: false,
+      keepSignedIn: true,
       showPassword: false,
     };
   },
@@ -90,7 +91,6 @@ export default {
 .container {
   width: 800px;
   height: 550px;
-  background-color: white;
   border-radius: 20px;
   padding: 30px;
   padding-top: 10px;
