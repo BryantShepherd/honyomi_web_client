@@ -90,7 +90,7 @@ export default {
         console.log(ackMsg);
       });
     },
-    onCreateNewMessage(msg, receiverIds) {
+    onCreateNewMessage(msg, receivers) {
       let broadcastMsg = {
         sender: {
           id: this.currentUser.id,
@@ -99,10 +99,10 @@ export default {
         },
         messageText: msg,
         createdAt: new Date(),
-        receiverIds,
+        receivers,
         classroomId: this.currentClassroom.id,
       };
-      console.log(msg, receiverIds, broadcastMsg);
+      console.log(msg, receivers, broadcastMsg);
       this.$socket.emit("CREATE_NEW_MESSAGE", broadcastMsg, (err, ackMsg) => {
         if (err) {
           console.error(err);

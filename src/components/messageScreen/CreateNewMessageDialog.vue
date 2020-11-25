@@ -14,9 +14,9 @@
         chips
         label="Select"
         item-text="name"
-        item-value="id"
         multiple
         deletable-chips
+        return-object
         class="px-2 pt-1"
       >
       </v-autocomplete>
