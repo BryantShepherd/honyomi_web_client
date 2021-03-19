@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="600px" :retain-focus="false">
       <v-card>
         <v-toolbar dark color="primary" style="height: 80px">
           <v-toolbar-title style="margin-left: 230px; margin-top: 18px; font-size: 25px">File details</v-toolbar-title>
@@ -15,7 +15,7 @@
             <v-col lg="10">
               <v-list-item two-line>
                 <v-list-item-content>
-                  <v-list-item-title>Lesson1.txt</v-list-item-title>
+                  <v-list-item-title>{{ fileObj.name }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-col>

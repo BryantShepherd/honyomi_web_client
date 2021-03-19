@@ -8,7 +8,7 @@
     </div>
     <div v-if="convoIdParam" class="d-flex flex-column width-100 fit-v-viewport">
       <div id="conversation-app-bar" class="pa-5 d-flex align-center justify-space-between">
-        <h3>{{ currentConvo.conversation_name }}</h3>
+        <h3>{{ currentConvo ? currentConvo.conversation_name : "" }}</h3>
         <v-btn icon @click="showDetails = !showDetails">
           <v-icon>mdi-alert-circle-outline</v-icon>
         </v-btn>

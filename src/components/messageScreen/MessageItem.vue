@@ -1,13 +1,16 @@
 <template>
   <div class="d-flex pa-2">
     <v-avatar class="align-self-end" v-if="!isMine">
-      <v-img :src="message.sender.avatar_url" alt="avatar"></v-img>
+      <v-img :src="message.sender.avatar_url || message.sender.avatarUrl" alt="avatar"></v-img>
     </v-avatar>
     <div class="d-flex flex-column width-100 ml-2">
       <h4 v-if="!isMine">{{ message.sender.name }}</h4>
       <div :class="messageItemBodyClass">
         <p class="mb-0">{{ message.message || message.message_text }}</p>
         <span id="message-item-body-timestamp">{{ formatTimestamp }}</span>
+      </div>
+      <div v-if="message.attachment" :class="messageItemBodyClass">
+        <img :src="message.attachment.url" style="max-width: 50%;" />
       </div>
     </div>
   </div>
