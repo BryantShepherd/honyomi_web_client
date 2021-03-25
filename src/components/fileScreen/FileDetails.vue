@@ -1,6 +1,11 @@
 <template>
   <v-row>
     <v-dialog v-model="dialog" persistent max-width="600px" :retain-focus="false">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn v-bind="attrs" v-on="on" icon>
+          <v-icon color="blue lighten-1">mdi-information</v-icon>
+        </v-btn>
+      </template>
       <v-card>
         <v-toolbar dark color="primary" style="height: 80px">
           <v-toolbar-title style="margin-left: 230px; margin-top: 18px; font-size: 25px">File details</v-toolbar-title>
@@ -68,17 +73,11 @@ export default {
         //   value: "Pham Thi Dan",
         // },
       ],
+      dialog: false,
     };
   },
-  computed: {
-    dialog: {
-      get() {
-        return this.value;
-      },
-      set(value) {
-        this.$emit("input", value);
-      },
-    },
+  mounted() {
+    console.log(this.fileObj);
   },
 };
 </script>
