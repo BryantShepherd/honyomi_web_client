@@ -4,7 +4,9 @@
       <v-img :src="avatarUrl"></v-img>
     </v-list-item-avatar>
     <v-list-item-icon v-else>
-      <v-icon color="primary">{{ iconName || "mdi-account" }}</v-icon>
+      <v-icon color="primary">{{
+        iconName || convoObj.type === "single" ? "mdi-account" : "mdi-account-group"
+      }}</v-icon>
     </v-list-item-icon>
     <v-list-item-title>{{ convoObj.conversation_name }}</v-list-item-title>
   </v-list-item>

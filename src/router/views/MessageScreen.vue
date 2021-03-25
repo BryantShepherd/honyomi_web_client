@@ -1,14 +1,14 @@
 <template>
   <v-container fluid class="d-flex pa-0">
     <div class="fit-v-viewport pr-1 col-3" id="conversation-list">
-      <create-new-message-dialog />
+      <create-new-message-dialog @submit="onCreateNewMessage" />
       <v-list v-for="convo in currentClassConvos" :key="convo.id">
-        <conversation-item @click="onChangeConvo" :convoObj="convo" :avatarUrl="convo.avatarUrl" />
+        <conversation-item :convoObj="convo" :avatarUrl="convo.avatarUrl" />
       </v-list>
     </div>
     <div v-if="convoIdParam" class="d-flex flex-column width-100 fit-v-viewport">
       <div id="conversation-app-bar" class="pa-5 d-flex align-center justify-space-between">
-        <h3>{{ currentConvo.conversation_name }}</h3>
+        <h3>{{ currentConvo ? currentConvo.conversation_name : "" }}</h3>
         <v-btn icon @click="showDetails = !showDetails">
           <v-icon>mdi-alert-circle-outline</v-icon>
         </v-btn>
@@ -36,7 +36,7 @@ import MessageItem from "@/components/messageScreen/MessageItem.vue";
 import MessageTextBox from "@/components/messageScreen/MessageTextBox.vue";
 import ConversationItem from "@/components/messageScreen/ConversationItem.vue";
 import MessageListDate from "@/components/messageScreen/MessageListDate.vue";
-import CreateNewMessageDialog from "../../components/messageScreen/createNewMessageDialog.vue";
+import CreateNewMessageDialog from "@/components/messageScreen/CreateNewMessageDialog.vue";
 import { mapGetters, mapState } from "vuex";
 import ConversationEmptyScreen from "../../components/messageScreen/conversationEmptyScreen.vue";
 import ConversationDetails from "../../components/messageScreen/ConversationDetails.vue";
@@ -68,6 +68,7 @@ export default {
       await this.$store.dispatch("FETCH_CLASS_CONVOS", currentClassroomId);
       if (currentConvoId) {
         await this.$store.dispatch("FETCH_CONVO_MESSAGES", currentConvoId);
+        this.$store.dispatch("CHANGE_CURRENT_CONVO", currentConvoId);
       }
     },
     onSendMessage(msg) {
@@ -89,8 +90,25 @@ export default {
         console.log(ackMsg);
       });
     },
-    onChangeConvo(convoId) {
-      this.$store.dispatch("CHANGE_CURRENT_CONVO", convoId);
+    onCreateNewMessage(msg, receivers) {
+      let broadcastMsg = {
+        sender: {
+          id: this.currentUser.id,
+          name: this.currentUser.name,
+          avatar_url: this.currentUser.avatar_url,
+        },
+        messageText: msg,
+        createdAt: new Date(),
+        receivers,
+        classroomId: this.currentClassroom.id,
+      };
+      console.log(msg, receivers, broadcastMsg);
+      this.$socket.emit("CREATE_NEW_MESSAGE", broadcastMsg, (err, ackMsg) => {
+        if (err) {
+          console.error(err);
+        }
+        console.log(ackMsg);
+      });
     },
     isSameDay(i) {
       return isSameDay(this.currentConvoMessages[i].createdAt, this.currentConvoMessages[i - 1].createdAt);

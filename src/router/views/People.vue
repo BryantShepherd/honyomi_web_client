@@ -28,7 +28,6 @@
 
 <script>
 import PersonDetail from "@/components/peopleScreen/PersonDetail";
-import { getClassroomMembers } from "@/services/classroom.service.js";
 import { mapState } from "vuex";
 
 export default {
@@ -54,21 +53,16 @@ export default {
     showPersonDetail() {
       this.personDetail = true;
     },
-    getAllMembers() {
-      this.loading = true;
-      getClassroomMembers(this.currentClassroom.id).then(res => {
-        this.loading = false;
-        this.members = res.data.data;
-      });
-    },
   },
   computed: {
     ...mapState({
       currentClassroom: state => state.Classroom.currentClassroom,
     }),
   },
-  mounted() {
-    this.getAllMembers();
+  async mounted() {
+    this.loading = true;
+    this.members = await this.$store.dispatch("FETCH_CLASS_MEMBERS", this.currentClassroom.id);
+    this.loading = false;
   },
 };
 </script>
