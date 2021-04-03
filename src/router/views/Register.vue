@@ -5,9 +5,17 @@
       <div class="formContainer">
         <h1 class="titleSignin">Sign Up</h1>
         <v-form @submit="login()">
-          <v-text-field v-model="user.name" label="Full Name" placeholder="Admin Admin" outlined required>
+          <v-text-field
+            id="txtUsername"
+            v-model="user.name"
+            label="Full Name"
+            placeholder="Admin Admin"
+            outlined
+            required
+          >
           </v-text-field>
           <v-text-field
+            id="txtEmail"
             v-model="user.email"
             label="Email address or phone number"
             placeholder="user@remind-clone.com"
@@ -16,6 +24,7 @@
           >
           </v-text-field>
           <v-text-field
+            id="txtPassword"
             v-model="user.password"
             label="Password"
             outlined
@@ -27,6 +36,7 @@
           >
           </v-text-field>
           <v-text-field
+            id="txtPasswordConfirm"
             v-model="repassword"
             label="Re-enter Password"
             outlined
@@ -38,6 +48,7 @@
           >
           </v-text-field>
           <v-select
+            id="selRole"
             :items="roles"
             item-text="name"
             item-value="id"
@@ -45,7 +56,7 @@
             filled
             label="Select Role"
           ></v-select>
-          <v-btn block elevation="4" color="primary" @click="register()"> Register </v-btn>
+          <v-btn id="btnRegister" block elevation="4" color="primary" @click="register()"> Register </v-btn>
         </v-form>
       </div>
     </v-card>
