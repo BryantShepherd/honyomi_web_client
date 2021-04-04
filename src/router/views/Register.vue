@@ -3,7 +3,7 @@
     <v-card class="container">
       <img src="/assets/login.png" class="loginImg" />
       <div class="formContainer">
-        <h1 class="titleSignin">Sign Up</h1>
+        <h1 class="titleSignUp">Sign Up</h1>
         <v-form @submit="login()">
           <v-text-field
             id="txtUsername"
@@ -143,7 +143,7 @@ export default {
   text-align: center;
   font-size: 13px;
 }
-.titleSignin {
+.titleSignUp {
   text-align: center;
   margin: 20px;
   color: dodgerblue;
