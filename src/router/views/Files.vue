@@ -12,24 +12,20 @@
           </v-col>
         </v-row>
       </v-card-title>
-      <v-list max-width="500px" subheader two-line v-if="files.length > 0">
-        <v-list-item v-for="file in files" :key="file.name" @click.stop="showFileDetails = true">
+      <v-list id="file-list" max-width="500px" subheader two-line v-if="files.length > 0">
+        <v-list-item class="file-list-item" v-for="file in files" :key="file.id">
           <v-list-item-avatar>
             <v-icon class="blue lighten-1" dark> mdi-file </v-icon>
           </v-list-item-avatar>
 
           <v-list-item-content>
-            <v-list-item-title v-text="file.name"></v-list-item-title>
+            <v-list-item-title>{{ file.name }}</v-list-item-title>
 
             <v-list-item-subtitle v-text="formatTs(file.created_at)"></v-list-item-subtitle>
           </v-list-item-content>
 
-          <file-details v-model="showFileDetails" :fileObj="file"></file-details>
-
           <v-list-item-action>
-            <v-btn icon>
-              <v-icon color="blue lighten-1">mdi-information</v-icon>
-            </v-btn>
+            <file-details :fileObj="file"></file-details>
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -51,7 +47,6 @@ export default {
   components: { FileDetails, UploadFile },
   data() {
     return {
-      showFileDetails: false,
       files: [],
       loading: true,
     };

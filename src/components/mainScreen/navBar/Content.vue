@@ -15,7 +15,7 @@
     <add-people></add-people>
     <template v-slot:extension>
       <v-tabs align-with-title color="#2196f3">
-        <v-tab v-for="tab in tabs" :key="tab.name" :to="{ name: tab.routeName }">
+        <v-tab v-for="tab in tabs" :key="tab.name" :to="{ name: tab.routeName }" :class="'tab' + tab.name">
           {{ tab.name }}
         </v-tab>
       </v-tabs>

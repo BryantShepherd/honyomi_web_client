@@ -30,6 +30,12 @@ export default {
         convoMessages.push(newMsg);
       }
     },
+    ADD_CONVO(state, { classroomId, newConvo }) {
+      let classroomConvos = state.conversations[classroomId];
+      if (classroomConvos) {
+        classroomConvos.push(newConvo);
+      }
+    },
     RESET_MESSAGE(state) {
       state.currentConvo = {};
       state.messages = {};
@@ -82,6 +88,16 @@ export default {
     SOCKET_MSG_NEW_MESSAGE({ commit }, newMsg) {
       let convoId = newMsg.conversationId;
       commit("ADD_MESSAGE", { convoId, newMsg });
+    },
+    /**
+     *
+     * @param {Object} newMsg
+     * @param {Object} newConvo
+     */
+    SOCKET_MSG_FIRST_TIME_MESSAGE({ commit }, { newMsg, newConvo }) {
+      const newConvoClassroomId = newConvo.classroom_id;
+      commit("ADD_CONVO", { classroomId: newConvoClassroomId, newConvo });
+      commit("ADD_MESSAGE", { convoId: newConvo.id, newMsg });
     },
     RESET_MESSAGE({ commit }) {
       commit("RESET_MESSAGE");

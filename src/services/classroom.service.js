@@ -11,6 +11,7 @@ export function getClassrooms() {
 export function getClassroomStudents(classroomId) {
   return axios.get(`/api/classroom/${classroomId}/students`);
 }
+
 /**
  *
  * @param {Number} classroomId

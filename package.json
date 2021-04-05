@@ -1,5 +1,5 @@
 {
-  "name": "honyomi_web_client",
+  "name": "remind_clone",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,13 +10,14 @@
     "lint:prettier": "prettier . --write"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "dayjs": "^1.9.6",
     "express": "^4.17.1",
-    "socket.io-client": "2.3.x",
     "firebase": "^8.1.1",
+    "socket.io-client": "2.3.x",
     "vue": "^2.6.11",
+    "vue-meta": "^2.4.0",
     "vue-router": "^3.2.0",
     "vue-socket.io": "^3.0.10",
     "vuetify": "^2.2.11",

@@ -4,28 +4,24 @@
       <template v-slot:activator="{ on, attrs }">
         <v-hover v-slot="{ hover }">
           <div v-bind="attrs" v-on="on">
-            <v-btn v-if="hover" class="info">
-              Add
-              <v-icon right dark> mdi-file-plus-outline </v-icon>
-            </v-btn>
-            <v-btn v-if="!hover">
+            <v-btn id="btn-add-file" :class="hover ? 'info' : ''">
               Add
               <v-icon right dark> mdi-file-plus-outline </v-icon>
             </v-btn>
           </div>
         </v-hover>
       </template>
-      <v-card>
+      <v-card id="dialog-upload-file">
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">
+          <v-btn id="btn-close" color="blue darken-1" text @click="dialog = false">
             Close
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-actions>
         <v-card-text>
           <!-- Add message -->
-          <v-text-field outlined label="Message" v-model="message"></v-text-field>
+          <v-text-field id="txt-file-msg" outlined label="Message" v-model="message"></v-text-field>
           <div v-if="!file">
             <div
               :class="['dropZone', dragging ? 'dropZone-over' : '']"
@@ -36,7 +32,7 @@
                 <v-icon left class="dropZone-title"> mdi-cloud-upload </v-icon>
                 <span class="dropZone-title">Drop file or click to upload</span>
               </div>
-              <input type="file" ref="input1" @change="onChange" />
+              <input id="file-input" type="file" ref="input1" @change="onChange" />
             </div>
           </div>
           <div v-else class="dropZone-uploaded">
@@ -46,11 +42,11 @@
                 <div>File Size: {{ file.size }} bytes</div>
               </div>
               <v-row class="mt-2">
-                <v-btn class="warning mr-2" @click="removeFile">
+                <v-btn id="btn-file-cancel" class="warning mr-2" @click="removeFile">
                   Remove
                   <v-icon right dark>mdi-file-remove</v-icon>
                 </v-btn>
-                <v-btn class="info" @click="onUpload">
+                <v-btn id="btn-file-upload" class="info" @click="onUpload">
                   Upload
                   <v-icon right dark> mdi-cloud-upload </v-icon>
                 </v-btn>

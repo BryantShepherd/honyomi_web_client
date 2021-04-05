@@ -1,4 +1,4 @@
-import { getClassrooms } from "@/services/classroom.service";
+import { getClassrooms, getClassroomMembers } from "@/services/classroom.service";
 import Vue from "vue";
 
 export default {
@@ -21,7 +21,7 @@ export default {
      * @param {Number} classId
      * @param {Array} members
      */
-    SET_CLASS_MEMBERS(state, classId, members) {
+    SET_CLASS_MEMBERS(state, { classId, members }) {
       Vue.set(state.classroomMembers, classId, members);
     },
     /**
@@ -65,14 +65,22 @@ export default {
     RESET_CLASSROOM({ commit }) {
       commit("RESET_CLASSROOM");
     },
-    // FETCH_MEMBERS({ commit, state }, classroomId) {
-    //   return new Promise((resolve, reject) => {
-    //     if (state.classroomMembers[classroomId]) {
-    //       return state.classroomMembers[classroomId];
-    //     }
+    FETCH_CLASS_MEMBERS({ commit, state }, classroomId) {
+      return new Promise((resolve, reject) => {
+        if (state.classroomMembers[classroomId]) {
+          return resolve(state.classroomMembers[classroomId]);
+        }
 
-    //   })
-    // },
+        getClassroomMembers(classroomId)
+          .then(res => res.data)
+          .then(data => {
+            const members = data.data;
+            commit("SET_CLASS_MEMBERS", { classId: classroomId, members });
+            resolve(members);
+          })
+          .catch(reject);
+      });
+    },
   },
   getters: {
     isClassFetched: state => {

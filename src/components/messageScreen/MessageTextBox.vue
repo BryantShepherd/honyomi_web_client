@@ -18,7 +18,7 @@
         <v-icon>mdi-file</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn text color="primary" @click="onSend">Send</v-btn>
+      <v-btn id="btnSend" text color="primary" @click="onSend">Send</v-btn>
     </div>
   </div>
 </template>
