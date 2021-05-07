@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex pa-2">
+  <div class="d-flex pa-2 itemMessage">
     <v-avatar class="align-self-end" v-if="!isMine">
       <v-img :src="message.sender.avatar_url || message.sender.avatarUrl" alt="avatar"></v-img>
     </v-avatar>

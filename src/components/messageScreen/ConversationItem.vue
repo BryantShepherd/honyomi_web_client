@@ -1,5 +1,5 @@
 <template>
-  <v-list-item :to="toConvo" class="py-0" @click="onClick">
+  <v-list-item :to="toConvo" class="py-0 itemConversation" @click="onClick">
     <v-list-item-avatar v-if="avatarUrl">
       <v-img :src="avatarUrl"></v-img>
     </v-list-item-avatar>

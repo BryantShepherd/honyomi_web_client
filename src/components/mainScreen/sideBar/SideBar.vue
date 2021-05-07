@@ -53,6 +53,7 @@
           :key="item.id"
           :to="{ path: `/classes/${item.code}` }"
           style="margin-right: 25px"
+          class="itemOwnedClass itemClass"
         >
           <v-list-item-avatar size="25px" style="margin-right: 12px">
             <v-img src="/assets/class_avatar/geometry.svg"></v-img>
@@ -70,6 +71,7 @@
           :key="item.id"
           :to="{ path: `/classes/${item.code}` }"
           style="margin-right: 25px"
+          class="itemJoinedClass itemClass"
         >
           <v-list-item-avatar size="25px" style="margin-right: 12px">
             <v-img src="/assets/class_avatar/geometry.svg"></v-img>

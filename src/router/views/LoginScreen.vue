@@ -12,6 +12,7 @@
             outlined
             required
             @keyup.enter.exact="login"
+            id="txtEmail"
           >
           </v-text-field>
           <v-text-field
@@ -24,12 +25,13 @@
             :type="showPassword ? 'text' : 'password'"
             @click:append="showPassword = !showPassword"
             @keyup.enter.exact="login"
+            id="txtPassword"
           >
           </v-text-field>
           <v-checkbox v-model="keepSignedIn" :label="`Stay logged in`"> </v-checkbox>
-          <v-btn block elevation="4" color="primary" @click="login"> Log in </v-btn>
+          <v-btn id="btnSignIn" block elevation="4" color="primary" @click="login"> Log in </v-btn>
           <p class="orDivider"> OR </p>
-          <v-btn block elevation="4" max-width="370px">
+          <v-btn id="btnSignInGoogle" block elevation="4" max-width="370px">
             <v-avatar size="3%" class="mr-3">
               <v-img src="/assets/logoGG.png"> </v-img>
             </v-avatar>
